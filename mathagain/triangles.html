@@ -1,8 +1,115 @@
-<!DOCTYPE html> 
-<html>  
-	<head>  
-		</head>  
-		<body style="background-color:#ccffff;"> 	
-			<h1>Triangle evaluator</h1>  
-			Design an html5 app that evaluates triangles.  Use 3 input boxes to let the user enter the three sides by length. Validate that the input values are between 1 and 300. Do not restrict the order of the values (e.g., the longest first)  Validate that the lengths entered form a triangle; Otherwise, alert user to change the inputs, rejecting the inputs.  If the input lengths form a triangle, draw the triangle with the following instruction: https://www.w3schools.com/graphics/svg_polygon.asp   Use big letters to inform the user: That is a "SCALENE" or "EQUILATERAL" or "ISOSCELES" or "RIGHT" triangle. It has an area of ___, a base of ___ and a height of ___.   </body>
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script>
+		function bla(){
+				debugger;
+				let a = 1*document.getElementById("input1").value;
+				let b = 1*document.getElementById("input2").value;
+				let c = 1*document.getElementById("input3").value;
+				let sor = [a,b,c];
+				let sides = sor.sort((a,b)=>a-b)
+				let short = sides[0];
+				let medium = sides[1];
+				let long = sides[2];
+				
+				if(short + medium <= long){
+					document.getElementById("err").innerHTML = "The sides are not valid. Consult the Triangle Inequality Theorem for more info"
+				}
+				if(short**2 + medium**2 == long**2){
+						document.getElementById("res2").innerHTML = "This is a right triangle"
+					}
+				if(short === medium && medium === long && short === long){
+					document.getElementById("res3").innerHTML = "This is an equilateral triangle"
+				}
+				else if(short != medium  && medium != long ){
+						document.getElementById("res").innerHTML = "This is a scalene triangle"
+					}
+					else if(short == medium && medium != long|| medium == long  && medium != short|| short == long && medium != long){
+						document.getElementById("res3").innerHTML = "This is a isosceles triangle"
+					}
+				
+				
+				}
+				function getMeasurements(){
+					let a = 1*document.getElementById("input1").value;
+					let b = 1*document.getElementById("input2").value;
+					let c = 1*document.getElementById("input3").value;
+					let sor = [a,b,c];
+					let sides = sor.sort((a,b)=>a-b)
+					let short = sides[0];
+					let medium = sides[1];
+					let long = sides[2];
+					let base = long;
+					let perimeter = short + medium + long;
+					let s = perimeter / 2;
+					let area = Math.sqrt(s * (s-short)*(s-medium)*(s-long));
+					let height = (2*area) / base;
+					document.getElementById("res4").innerHTML = "The area of your triangle is: "+ area + "square units, and your triangle's perimeter is: " + perimeter + "units.";
+				}
+				function draw(){
+					let a = 1*document.getElementById("input1").value;
+					let b = 1*document.getElementById("input2").value;
+					let c = 1*document.getElementById("input3").value;
+					let sor = [a,b,c];
+					let sides = sor.sort((a,b)=>a-b)
+					let short = sides[0];
+					let medium = sides[1];
+					let long = sides[2];
+					let base = long;
+					let perimeter = short + medium + long;
+					let s = perimeter / 2;
+					let area = Math.sqrt(s * (s-short)*(s-medium)*(s-long));
+					let height = (2*area) / base;
+					let x1 = 0;
+					let y1 = 0;
+					let x2 = Math.sqrt(short ** 2 - height ** 2);
+					let y2 = height;
+					let x3 = long;
+					let y3 = 0;
+					triangle.innerHTML =  `<polygon points="${x1},${y1} ${x2},${y2} ${x3},${y3}" style="fill:blue;stroke:black;stroke-width:1" />`
+				}
+	</script>
+</head>
+
+<body style="background-color:#ccffff;">
+	<h1>Triangle evaluator</h1>
+	Design an html5 app that evaluates triangles. Use 3 input boxes to let the user enter the three sides by length. Validate
+	that the input values are between 1 and 300. Do not restrict the order of the values (e.g., the longest first) Validate
+	that the lengths entered form a triangle; Otherwise, alert user to change the inputs, rejecting the inputs. If the input
+	lengths form a triangle, draw the triangle with the following instruction: <a href="https://www.w3schools.com/graphics/svg_polygon.asp"
+	 target="self">w3 schools SVG"</a> Use big letters to inform the user: That is a "SCALENE" or "EQUILATERAL" or "ISOSCELES"
+	or "RIGHT" triangle. It has an area of ___, a base of ___ and a height of ___.
+	<h2>Input the side length of your triangle</h2>
+	<br>
+			<input type = "number" id = "input1"></input>
+			<br>
+			<br>
+			<input type = "number" id = "input2"></input>
+			<br>
+			<br>
+			<input type = "number" id = "input3"></input>
+			<br>
+			<br>
+			<button type = "button" onclick = "bla()">Evaluate</button>
+			<button type = "button" onclick = "draw()">Draw</button>
+			<button type = "button" onclick = "getMeasurements()">Measurements</button>
+			<output id = "err"/>
+			<br>
+			<br>
+			<div id = "res"></div>
+			<br>
+			<div id = "res2"></div>
+			<br>
+			<div id = "res3"></div>
+			<br>
+			<div id = "res4"></div>
+			<br>
+			<svg height="500" width="500" id = "triangle">
+  <polygon points="0,0 0,0 0,0" style="fill:blue;stroke:black;stroke-width:1" />
+</svg>
+<br>
+
+			</body>
 			</html>

@@ -1,0 +1,106 @@
+
+<!doctype html>
+<html>
+   <head>
+      <style>
+         table {
+         border-width: 2px;
+         }
+         th {
+         font-size: 14px;
+         text-align: center;
+         border-style: solid;
+         border-color: Black;
+         }
+         td {
+         width: 30px;
+         font-size: 12px;
+         text-align: center;
+         margin-top: 12px;
+         border-style: solid;
+         border-color: Black;
+         }
+      </style>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js'>
+         // https://github.com/marak/Faker.js
+      </script>
+      <script src="contactmanager.js"></script>
+      <script>
+         let list = new ContactMap();
+         
+         const fill = function(){
+            contactname.value = faker.name.findName();
+            phone.value = faker.phone.phoneNumber()
+            email.value = faker.internet.email();
+            address.value = faker.address.streetAddress()
+         }
+         
+         const edit = function (ctname){
+            let contact = list.getDetail(ctname);
+
+         }
+         const remove = function(cname){
+
+         }
+         
+         const add = function(cname, phone, email, address){
+					 debugger;
+           let c = new Contact(cname, phone, email, address);
+           list.add(cname, c);
+
+           
+         }
+         
+         const createActionButtons = function(contactname){
+            let buttonhtml= `<button onclick='edit("${contactname}")'>Edit</button>
+                <button onclick='remove("${contactname}")'>Delete</button>`
+             return buttonhtml;
+         }
+         
+         const createRow = function(contact){
+           let rowHtml = ``
+           return rowHtml;
+         }
+         
+         const displayContacts = function(){
+             let tblHtml = ``;
+             recent.innerHTML = tblHtml;
+         }
+         
+         const displayCount = function(){
+            total.innerHTML = `Total: -99`;
+         }
+      </script>
+   </head>
+   <body style="background-color:#ccffff;">
+      <h1 style="text-align: center">Contact Manager</h1>
+      <h2>
+         Add a contact:
+      </h2>
+      <table>
+         <tr>
+            <td>Name:</td>
+            <td><input size="25" type="text" id="contactname" style="background-color:#ccffff;"></td>
+         </tr>
+         <tr>
+            <td>Phone:</td>
+            <td> <input size="25"  type="text" id="phone" style="background-color:#ccffff;"></td>
+         </tr>
+         <tr>
+            <td>Email:</td>
+            <td> <input size="25"  type="text" id="email" style="background-color:#ccffff;"></td>
+         </tr>
+         <tr>
+            <td>Address:</td>
+            <td> <input size="25"  type="text" id="address" style="background-color:#ccffff;"></td>
+         </tr>
+      </table>
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<button type="button" onclick="fill()">Auto Fill</button>
+      <button type="button" onclick="add(contactname.value, phone.value, email.value, address.value)">Add to Contacts</button>
+      <h2>Recently Added</h2>
+      <div id="total"></div>
+      <p>
+      <div id="recent">
+      </div>
+   </body>
+</html>
