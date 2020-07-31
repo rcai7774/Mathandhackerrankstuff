@@ -47,6 +47,7 @@
 					 debugger;
            let c = new Contact(cname, phone, email, address);
            list.add(cname, c);
+					 displayContacts(cname);
 
            
          }
@@ -58,18 +59,38 @@
          }
          
          const createRow = function(contact){
-           let rowHtml = ``
+           let rowHtml = `<tr>
+					 <td> ${contact.contactname} </td>
+					 <td> ${contact.phone} </td>
+					 <td> ${contact.email} </td>
+					 <td> ${contact.address} </td>
+					 <td> ${createActionButtons(contact.contactname)} </td>
+					 </tr>
+					 `
            return rowHtml;
          }
          
-         const displayContacts = function(){
-             let tblHtml = ``;
-             recent.innerHTML = tblHtml;
+         const displayContacts = function(cname){
+					 debugger;
+             let tblHtml = `
+						 <table>
+						 <tr>
+    <th>Name</th>
+    <th>Phone</th> 
+    <th>Email</th>
+		<th>Address</th>
+  </tr>`
+	for(const contact of list.getAll()){
+					 tblHtml += createRow(contact);
+				 }
+             tblHtml += `</table>`
+						 recent.innerHTML = tblHtml;
          }
-         
-         const displayCount = function(){
-            total.innerHTML = `Total: -99`;
+				const displayCount = function(){
+            total.innerHTML = `Total: ${count()}`;
          }
+				 
+				 
       </script>
    </head>
    <body style="background-color:#ccffff;">
@@ -95,7 +116,8 @@
             <td> <input size="25"  type="text" id="address" style="background-color:#ccffff;"></td>
          </tr>
       </table>
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<button type="button" onclick="fill()">Auto Fill</button>
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+			<button type="button" onclick="fill()">Auto Fill</button>
       <button type="button" onclick="add(contactname.value, phone.value, email.value, address.value)">Add to Contacts</button>
       <h2>Recently Added</h2>
       <div id="total"></div>

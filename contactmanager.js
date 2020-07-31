@@ -45,19 +45,19 @@ class ContactMap{
     // count the number of contacts
     // This mimics Map.size.
 		
-    return details.length;
+    return Object.keys(this.details).length;
   }
 
   getDetail(name){
     // given a full name, return the contact detail through a lookup operation
     //This mimics Map.get(key)
-		return details.get[name];
+		return Object.values(this.details[name]);
 
   }
 
   getAll(){
     // return all contact details as an array
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values
-
+		return Object.values(this.details);
   }
 }
