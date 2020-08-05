@@ -38,7 +38,7 @@ class ContactMap{
   remove(name){
     //delete the detail by name
     //This mimics Map.delete(key)
-		this.details[name] = null;
+		delete this.details[name];
   }
 
   count(){
@@ -51,7 +51,7 @@ class ContactMap{
   getDetail(name){
     // given a full name, return the contact detail through a lookup operation
     //This mimics Map.get(key)
-		return Object.values(this.details[name]);
+		return this.details[name];
 
   }
 
