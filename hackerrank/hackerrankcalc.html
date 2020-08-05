@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Binary Calculator</title>
+				<style>
+					body {
+						width: 33%
+					}
+
+					#res {
+						background-color: lightgray;
+						border: solid;
+						height: 48px;
+						font-size: 20px;
+					}
+
+					.btns01 {
+						background-color: lightgreen;
+						color: brown;
+						height: 36px;
+						width: 25%;
+						font-size: 18px;
+						margin: 0px;
+						float: left;
+					}
+
+					.btnscleq{
+						background-color: darkgreen;
+						color: white;
+						width: 25%;
+						height: 36px;
+						font-size: 18px;
+						margin: 0px;
+						float: left;
+					}
+
+					.btnsoperation{
+						background-color: black;
+						color: red;
+						width: 25%;
+						height: 36px;
+						font-size: 18px;
+						margin: 0px;
+						float: left;
+					}
+					</style>
+					<script>
+						function click0(){
+							let prev = document.getElementById("res").innerHTML;
+							document.getElementById("res").innerHTML = prev + "0";
+						}
+						function click1(){
+							let prev1 = document.getElementById("res").innerHTML;
+							document.getElementById("res").innerHTML = prev1 + "1";
+						}
+						function clearRes(){
+							document.getElementById("res").innerHTML = "";
+						}
+						function equals(){
+							debugger;
+							let s = document.getElementById("res").innerHTML;
+							let re = /(\d+)(\D)(\d+)/;
+							let numbers = re.exec(s);
+							let num1 = parseInt(numbers[1],2);
+							let operator = numbers[2];
+							let num2 = parseInt(numbers[3],2);
+							let expr = num1 + operator + num2;
+							let dresult = Math.floor(eval(expr));
+							let result = dresult.toString(2);
+							document.getElementById("res").innerHTML = result;
+							
+						}
+						function addSum(){
+							let prev2 = document.getElementById("res").innerHTML;
+							document.getElementById("res").innerHTML = prev2 + "+"
+						}
+						function subSum(){
+							let prev3 = document.getElementById("res").innerHTML;
+							document.getElementById("res").innerHTML = prev3 + "-"
+						}
+						function multiply(){
+							let prev4 = document.getElementById("res").innerHTML;
+							document.getElementById("res").innerHTML = prev4 + "*"
+						}
+						function divide(){
+							let prev5 = document.getElementById("res").innerHTML;
+							document.getElementById("res").innerHTML = prev5 + "/"
+						}
+					</script>
+    </head>
+    <body>
+			<div id = "btns" >
+			<div id = "res"></div>
+			<button id = "btn0" class = "btns01" onclick = "click0()">0</button>
+			<button id = "btn1" class = "btns01" onclick = "click1()">1</button>
+			<button id = "btnClr" class = "btnscleq" onclick = "clearRes()">C</button>
+			<button id = "btnEql" class = "btnscleq" onclick = "equals()">=</button>
+			<button id = "btnSum" class = "btnsoperation" onclick = "addSum()">+</button>
+			<button id = "btnSub" class = "btnsoperation" onclick = "subSum()">-</button>
+			<button id = "btnMul" class = "btnsoperation" onclick = "multiply()">*</button>
+			<button id = "btnDiv" class = "btnsoperation" onclick = "divide()">/</button>
+			</div>
+    </body>
+</html>

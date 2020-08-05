@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+			<link rel="stylesheet" href="css/button.css" type="text/css">
+        <meta charset="utf-8">
+        <title>Button</title>
+				<style>
+					#btn {
+						width: 96px;
+						height: 48px;
+						font-size: 24px;
+					}
+					</style>
+				<script> 	
+				function operation(){
+						debugger;
+						let i = 1*document.getElementById("btn").innerHTML;
+						document.getElementById("btn").innerHTML = ++i;
+					}
+					</script>
+    </head>
+    <body style = "background-color : LightCyan;">
+			<button id = "btn" onclick = "operation()">0</button>
+    </body>
+</html>
