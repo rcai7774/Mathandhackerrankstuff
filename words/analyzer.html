@@ -7,11 +7,12 @@
 <body style = "background-color:#ccffff;" >
 	<h1>Text Analyzer</h1>
 	<br>
-	<p>The text analyzer analyzes text you put into the input, and shows you the frequency of individual words.</p>
+	<p>The text analyzer analyzes text you put into the input, and shows you the frequency of individual words or letters.</p>
 	<br>
 	<textarea id = "text" rows = "5" cols = "35" style = "background-color:#ccffff;"></textarea>
 	<br>
-	<button style = "background-color:#ccffff" type = "button" onclick = "analyze(text.value)">Analyze!</button>
+	<button style = "background-color:#ccffff" type = "button" onclick = "analyze(text.value)">Analyze Words!</button>
+	<button style = "background-color:#ccffff" type = "button" onclick = "analyzeLetters(text.value)">Analyze Letters!</button>
 	<br>
 	<div id = "out"></div>
 
